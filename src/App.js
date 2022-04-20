@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import SearchBox from './components/search-box/search-box.component';
 import CardList from './components/card-list/card-list.component'
@@ -16,24 +16,24 @@ const App = () => {
   useEffect(
     () => {
       fetch('https://jsonplaceholder.typicode.com/users')
-      .then((response) => response.json())
-      .then((kitties) => setKitties(kitties))
-      .catch((error) => console.log(error));
+        .then((response) => response.json())
+        .then((kitties) => setKitties(kitties))
+        .catch((error) => console.log(error));
     }, []
   );
 
-    useEffect(
-      () => {
-        const newFilteredKitties = kitties
-      .filter((ele) => {
-        return ele.name
-        .toLocaleLowerCase()
-        .includes(searchField);
-      });
+  useEffect(
+    () => {
+      const newFilteredKitties = kitties
+        .filter((ele) => {
+          return ele.name
+            .toLocaleLowerCase()
+            .includes(searchField);
+        });
       setFilteredKitties(newFilteredKitties);
-      }, [kitties, searchField]
-    );
-  
+    }, [kitties, searchField]
+  );
+
   return (
     <div className="App">
       <h1>Kitties</h1>
@@ -42,7 +42,7 @@ const App = () => {
         placeholder='Search Kitties'
         onChangeHandler={onSearchChange}
       />
-      <CardList kitties={filteredKitties}/>
+      <CardList kitties={filteredKitties} />
     </div>
   );
 };
